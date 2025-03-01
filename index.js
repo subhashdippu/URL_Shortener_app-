@@ -1,9 +1,15 @@
-const mongoose = require("mongoose");
+const express = require("express");
 const dotenv = require("dotenv");
-
+const bodyParser = require("body-parser");
+const connectDB = require("./config/db");
+const redisClient = require("./config/redis");
 dotenv.config();
+const app = express();
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(console.log("mongodb connected successfully"))
-  .catch((error) => console.log("Error connecting to mongodb", error));
+connectDB();
+
+app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 3004;
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
