@@ -3,7 +3,9 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const connectDB = require("./api/config/db");
 const redisClient = require("./api/config/redis");
+
 dotenv.config();
+
 const app = express();
 
 connectDB();
